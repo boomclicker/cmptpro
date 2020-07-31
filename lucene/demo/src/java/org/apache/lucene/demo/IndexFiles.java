@@ -31,6 +31,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.demo.cmpt456Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.LongPoint;
 import org.apache.lucene.document.Document;
@@ -88,9 +89,10 @@ public class IndexFiles {
     Date start = new Date();
     try {
       System.out.println("Indexing to directory '" + indexPath + "'...");
-
       Directory dir = FSDirectory.open(Paths.get(indexPath));
-      Analyzer analyzer = new StandardAnalyzer();
+      String stop_Word = "lucene/demo/src/java/org/apache/lucene/demo/stop_word.txt";
+      Path stp = Paths.get(stop_Word);
+      Analyzer analyzer = new cmpt456Analyzer(stp);
       IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
 
       if (create) {
