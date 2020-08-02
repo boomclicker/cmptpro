@@ -187,8 +187,8 @@ public class HtmlIndexFiles {
       // field that is indexed (i.e. searchable), but don't tokenize 
       // the field into separate words and don't index term frequency
       // or positional information:
-      //Field pathField = new StringField("path", file.toString(), Field.Store.YES);
-      //doc.add(pathField);
+      Field pathField = new StringField("path", file.toString(), Field.Store.YES);
+      doc.add(pathField);
       
       // Add the last modified date of the file a field named "modified".
       // Use a LongPoint that is indexed (i.e. efficiently filterable with
@@ -197,7 +197,7 @@ public class HtmlIndexFiles {
       // year/month/day/hour/minutes/seconds, down the resolution you require.
       // For example the long value 2011021714 would mean
       // February 17, 2011, 2-3 PM.
-      //doc.add(new LongPoint("modified", lastModified));
+      doc.add(new LongPoint("modified", lastModified));
       
       // Add the contents of the file to a field named "contents".  Specify a Reader,
       // so that the text of the file is tokenized and indexed, but not stored.
